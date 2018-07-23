@@ -21,7 +21,8 @@ module Pod
           ['--configuration', 'Build the specified configuration (e.g. Debug). Defaults to Release'],
           ['--subspecs', 'Only include the given subspecs'],
           ['--spec-sources=private,https://github.com/CocoaPods/Specs.git', 'The sources to pull dependent ' \
-            'pods from (defaults to https://github.com/CocoaPods/Specs.git)']
+            'pods from (defaults to https://github.com/CocoaPods/Specs.git)'],
+          ['--gomoad', 'Exclude armv7s']
         ]
       end
 
@@ -57,6 +58,8 @@ module Pod
         @spec = spec_with_path(@name)
         @is_spec_from_path = true if @spec
         @spec ||= spec_with_name(@name)
+        @gomoad = argv.flag?('gomoad', false)
+        print "gomo ad--------------- ",@gomoad ,"---------------\n"
         super
       end
 
@@ -164,7 +167,8 @@ module Pod
           @dynamic,
           @config,
           @bundle_identifier,
-          @exclude_deps
+          @exclude_deps,
+          @gomoad
         )
 
         builder.build(@package_type)
