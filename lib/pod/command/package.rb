@@ -2,7 +2,7 @@ require 'tmpdir'
 module Pod
   class Command
     class Package < Command
-      self.summary = 'Package a podspec into a static library.'
+      self.summary = 'Package a podspec into a static library. by GOMO'
       self.arguments = [
         CLAide::Argument.new('NAME', true),
         CLAide::Argument.new('SOURCE', false)
